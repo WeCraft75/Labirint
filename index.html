@@ -485,8 +485,7 @@
       ctx.strokeStyle="#FF0000";
       ctx.lineWidth=2;
       ctx.moveTo(234,2);
-      var i=1;
-      var intervalBreak;
+      var i; var intervalBreak;
 
       function drawSolution(){
         ctx.moveTo(234,2);
@@ -498,9 +497,8 @@
       function animateSolution(){
         i=0;
         ctx.moveTo(234,2);
-        ctx.lineTo(lines[i][0],lines[i][1]);
-        i=i+1;
-        intervalBreak=setInterval(intervalDraw, 10);
+        ctx.beginPath();
+        intervalBreak=setInterval(intervalDraw, 250);
       }
       function intervalDraw(){
         console.log(i);
@@ -509,12 +507,14 @@
         ctx.lineWidth=2;
         console.log(lines[i][0]+", "+lines[i][1]);
         ctx.lineTo(lines[i][0],lines[i][1]);
+        ctx.stroke();
         i=i+1;
         if(i>=lines.length){
           clearInterval(intervalBreak);
         }
       }
       function clearSolution(){
+        clearInterval(intervalBreak);
         ctx.clearRect(0,0,484,484);
       }
     </script>
