@@ -488,6 +488,7 @@
       var i; var intervalBreak;
 
       function drawSolution(){
+        clearInterval(intervalBreak);
         ctx.moveTo(234,2);
         for (var i = 1; i < lines.length; i++) {
           ctx.lineTo(lines[i][0],lines[i][1]);
@@ -501,11 +502,11 @@
         intervalBreak=setInterval(intervalDraw, 250);
       }
       function intervalDraw(){
-        console.log(i);
+        //console.log(i);
         var ctx=document.getElementById('cvs').getContext('2d');
         ctx.strokeStyle="#FF0000";
         ctx.lineWidth=2;
-        console.log(lines[i][0]+", "+lines[i][1]);
+        //console.log(lines[i][0]+", "+lines[i][1]+"\n ");
         ctx.lineTo(lines[i][0],lines[i][1]);
         ctx.stroke();
         i=i+1;
