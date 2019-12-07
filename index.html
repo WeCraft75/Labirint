@@ -487,7 +487,8 @@
       ctx.strokeStyle="#42D0FF";
       ctx.lineWidth=3;
       ctx.moveTo(234,2);
-      var i; var intervalBreak;
+      var i; var intervalBreak; var isAnimating=false;
+      //isAnimating is necessary because if you click animateSolution multiple times and then try to clearRect, it gets bugged(read: clears and then continues drawing as if nothing happened)
 
       function drawSolution(){
         clearInterval(intervalBreak);
@@ -498,27 +499,32 @@
         }
       }
       function animateSolution(){
-        i=0;
-        ctx.moveTo(234,2);
-        ctx.beginPath();
-        intervalBreak=setInterval(intervalDraw, 250);
+        if (!isAnimating) {
+          isAnimating=true;
+          i=0;
+          ctx.moveTo(234,2);
+          ctx.beginPath();
+          intervalBreak=setInterval(intervalDraw, 250);
+        }
       }
       function intervalDraw(){
-        //console.log(i);
         var ctx=document.getElementById('cvs').getContext('2d');
         ctx.strokeStyle="#42D0FF";
         ctx.lineWidth=3;
+        //console.log(i);
         //console.log(lines[i][0]+", "+lines[i][1]+"\n ");
         ctx.lineTo(lines[i][0],lines[i][1]);
         ctx.stroke();
         i=i+1;
         if(i>=lines.length){
+          isAnimating=false;
           clearInterval(intervalBreak);
         }
       }
       function clearSolution(){
         clearInterval(intervalBreak);
         ctx.clearRect(0,0,484,484);
+        isAnimating=false;
       }
     </script>
   </body>
