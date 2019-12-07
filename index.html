@@ -10,7 +10,7 @@
       <div class="imageWrapper">
         <div class="labirint">
           <svg width="484" height="484" version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <g fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square">
+            <g fill="none" stroke="#d8dbe2" stroke-width="3" stroke-linecap="square">
               <line x1="2" y1="2" x2="226" y2="2" />
               <line x1="242" y1="2" x2="482" y2="2" />
               <line x1="34" y1="18" x2="50" y2="18" />
@@ -474,16 +474,18 @@
           <canvas id="cvs" width="484" height="484"></canvas>
         </div>
       </div>
-      <button type="button" onclick="drawSolution();">Draw solution</button>
-      <button type="button" onclick="animateSolution();">Animate solution</button>
-      <button type="button" onclick="clearSolution();">Clear solution</button>
+      <div class="controls">
+        <button type="button" onclick="drawSolution();">Draw solution</button>
+        <button type="button" onclick="animateSolution();">Animate solution</button>
+        <button type="button" onclick="clearSolution();">Clear solution</button>
+      </div>
     </div>
 
     <script type="text/javascript">
       var ctx=document.getElementById('cvs').getContext('2d');
       const lines = [[234,2], [234,10], [250,10], [250,26], [218,26], [218,10], [202,10], [202,26], [186,26], [186,42], [234,42], [234,58], [266,58], [266,74], [282,74], [282,90], [250,90], [250,186], [266,186], [266,250], [250,250], [250,234], [234,234], [234,266], [218,266], [218,298], [186,298], [186,250], [154,250], [154,266], [170,266], [170,298], [138,298], [138,314], [74,314], [74,330], [42,330], [42,346], [26,346], [26,362], [42,362], [42,378], [122,378], [122,330], [154,330], [154,314], [170,314], [170,330], [186,330], [186,314], [218,314], [218,330], [234,330], [234,346], [250,346], [250,314], [282,314], [282,298], [266,298], [266,282], [298,282], [298,314], [314,314], [314,346], [330,346], [330,362], [298,362], [298,378], [282,378], [282,394], [330,394], [330,410], [266,410], [266,394], [218,394], [218,442], [170,442], [170,458], [234,458], [234,474], [250,474], [250,482]];
-      ctx.strokeStyle="#FF0000";
-      ctx.lineWidth=2;
+      ctx.strokeStyle="#42D0FF";
+      ctx.lineWidth=3;
       ctx.moveTo(234,2);
       var i; var intervalBreak;
 
@@ -504,8 +506,8 @@
       function intervalDraw(){
         //console.log(i);
         var ctx=document.getElementById('cvs').getContext('2d');
-        ctx.strokeStyle="#FF0000";
-        ctx.lineWidth=2;
+        ctx.strokeStyle="#42D0FF";
+        ctx.lineWidth=3;
         //console.log(lines[i][0]+", "+lines[i][1]+"\n ");
         ctx.lineTo(lines[i][0],lines[i][1]);
         ctx.stroke();
