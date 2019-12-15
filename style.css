@@ -10,7 +10,6 @@ body{
   width: 100%;
   height: 100%;
   padding-top: 16%;
-  text-align: center;
   background: url("background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -29,10 +28,12 @@ body{
   margin: 0 auto;
   position: absolute;
 }
-.solution, #cvs{
+.solution, #cvs, .lCycleImage{
   z-index: 1;
 }
 .controls{
+  width: 550px;
+  margin: auto;
   margin-top: 10px;
 }
 button{
@@ -40,6 +41,11 @@ button{
   font-size: 1.8em;
   font-family: 'Geo';
   text-shadow: 5px 5px 5px #aaaaaa;
+}
+
+#lCycleImage{
+  transform: rotate(270deg);
+  z-index: 2;
 }
 
 /* font */

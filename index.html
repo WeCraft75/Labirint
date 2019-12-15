@@ -473,6 +473,9 @@
         <div class="solution">
           <canvas id="cvs" width="484" height="484"></canvas>
         </div>
+        <div class="lightcycle_animation">
+          <img src="lightcycle.png" alt="lightcycle" width="15px" height="12px" id="lCycleImage">
+        </div>
       </div>
       <div class="controls">
         <button type="button" onclick="drawSolution();">Draw solution</button>
@@ -487,7 +490,7 @@
       ctx.strokeStyle="#42D0FF";
       ctx.lineWidth=3;
       ctx.moveTo(234,2);
-      var i; var intervalBreak; var isAnimating=false;
+      var i=0; var intervalBreak; var isAnimating=false;
       //isAnimating is necessary because if you click animateSolution multiple times and then try to clearRect, it gets bugged(read: clears and then continues drawing as if nothing happened)
 
       function drawSolution(){
@@ -515,7 +518,8 @@
         //console.log(lines[i][0]+", "+lines[i][1]+"\n ");
         ctx.lineTo(lines[i][0],lines[i][1]);
         ctx.stroke();
-        // TODO: Insert lightcycle into animation
+        // TODO: Insert lightcycle animation    rotate ne dela tako, bo slika morala biti v canvasu
+        //document.getElementById('lCycleImage').style.transform = getLightCycleRotation(i);
         i=i+1;
         if(i>=lines.length){
           isAnimating=false;
@@ -526,6 +530,28 @@
         clearInterval(intervalBreak);
         ctx.clearRect(0,0,484,484);
         isAnimating=false;
+      }
+      function getLightCycleRotation(j) {
+        currentPos_x=lines[j][0];
+        currentPos_y=lines[j][1];
+        previousPos_x=lines[j-1][0];
+        previousPos_y=lines[j-1][1];
+
+        diff_x=currentPos_x - previousPos_x;
+        diff_y=currentPos_y - previousPos_y;
+        console.log(diff_x+", "+diff_y);
+        if (diff_x>0) {
+          return "rotate(180deg)";
+        }
+        else if (diff_x<0) {
+          return "rotate(0deg)";
+        }
+        else if (diff_y<0) {
+          return "rotate(90deg)";
+        }
+        else if (diff_y>0) {
+          return "rotate(270deg)";
+        }
       }
     </script>
   </body>
